@@ -1,0 +1,354 @@
+/* 🌙 تهيئة الـ Dark Mode */
+body {
+  background-color: #121212;
+  color: white;
+  font-family: system-ui;
+}
+
+/* ✅ تصميم الحاوية الرئيسية */
+.carousel {
+  width: 100vw;
+  padding: 30px 20px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ✅ تصميم العنوان */
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: palegreen;
+  width : 100%;
+}
+
+/* 🔥 تصميم الكاروسيل */
+.home-carousel {
+  width: 100%;
+  height: auto;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-carousel-content {
+  width: 94%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #000;
+}
+
+.home-carousel-content-swiper {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  height: auto;
+}
+
+/* 🎴 تصميم البطاقة */
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 0px;
+  box-shadow: 0 4px 10px rgba(255, 21, 0, 0.3);
+  color: white;
+  transition: transform 0.3s ease-in-out;
+  height: 100%;
+}
+
+.plan-card:hover {
+  transform: scale(1.05);
+}
+
+/* 🔥 محتوى البطاقة */
+.plan-card-content {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ عنوان الباقة مع خط */
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color:greenyellow;
+  margin-bottom: 10px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.plan-title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: green;
+  margin: auto;
+  margin-top: 5px;
+}
+
+/* 💰 السعر */
+.plan-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+/* 🔹 قائمة الفوائد */
+.plan-benefits {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.plan-benefit {
+  font-size: 1rem;
+  color: #bbbbbb;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan-benefit svg {
+  margin-right: 8px;
+  color: seagreen;
+  font-size: 1.2rem;
+}
+
+/* 🎯 زر الاشتراك */
+.subscribe-btn {
+  background-color: limegreen;
+  color: #121212;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 90%;
+  max-width: 300px;
+  display: block;
+  margin: auto;
+}
+
+.subscribe-btn:hover {
+  background-color: #ffc107;
+}
+/* 🔹 قائمة الفوائد */
+.plan-benefits {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+  text-align: right; /* ✅ محاذاة النص لليسار */
+}
+
+.plan-benefit {
+  font-size: 1rem;
+  color: #bbbbbb;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* ✅ جعل المحتوى بمحاذاة اليسار */
+}
+
+.plan-benefit svg {
+  margin-right: 8px;
+  color: mediumspringgreen;
+  font-size: 1.2rem;
+}
+
+/* 🔹 قائمة الفوائد */
+.plan-benefits {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.plan-benefit {
+  font-size: 1rem;
+  color: #bbbbbb;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.plan-benefit svg {
+  margin-left: 8px;
+  color: mediumspringgreen;
+  font-size: 1.2rem;
+}
+
+/* ⬇️ زر "Show More" */
+.show-more-btn {
+  background: none;
+  border: none;
+  color: #ffdd00;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  transition: color 0.3s;
+}
+
+.show-more-btn:hover {
+  color: #ffc107;
+}
+
+.show-more-btn svg {
+  margin-left: 5px;
+}
+
+/* 🎯 زر الاشتراك */
+.subscribe-btn {
+  background-color:limegreen;
+  color: #121212;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 90%;
+  max-width: 300px;
+  display: block;
+  margin: auto;
+}
+
+.subscribe-btn:hover {
+  background-color: #ffc107;
+}
+
+/* 🔥 ضبط ارتفاع الكارد */
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(255, 21, 0, 0.3);
+  text-align: center;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+  height: auto;
+}
+
+.plan-card:hover {
+  transform: scale(1.05);
+}
+
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9); /* تغميق الخلفية أكثر */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  text-align: left;
+  direction:ltr;
+}
+
+.popup-content {
+  background: #1e1e1e; /* خلفية داكنة */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: #ffffff; /* لون النص أبيض */
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.payment-list {
+  list-style: none;
+  padding: 0;
+  text-align: right;
+}
+
+.payment-method {
+  background: #2c2c2c; /* خلفية أغمق */
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align:left;
+  
+}
+
+.payment-btn, .whatsapp-btn2, .close-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.payment-btn {
+  background: #ffdd00;
+  color: black;
+}
+
+.payment-btn:hover {
+  background: #ffc107;
+}
+
+.whatsapp-btn2 {
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+}
+
+.whatsapp-btn2:hover {
+  background: #1ebe5d;
+}
+
+.close-btn {
+  background: red;
+  color: white;
+}
+
+.close-btn:hover {
+  background: darkred;
+}
+/* لون الأزرار غير النشطة */
+.swiper-pagination-bullet {
+  background-color: white !important;
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* لون الزر النشط */
+.swiper-pagination-bullet-active {
+  background-color: red !important;
+}

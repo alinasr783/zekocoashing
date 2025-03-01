@@ -22,8 +22,8 @@ const Header = () => {
   const menuItems = useMemo(
     () => [
       { text: "Home", icon: <HomeIcon />, link: "#home" },
-      { text: "Membership", icon: <PeopleIcon />, link: "#membership" },
-      { text: "Trainers", icon: <FitnessCenterIcon />, link: "#trainers" },
+      { text: "Packages", icon: <PeopleIcon />, link: "#packages" },
+      { text: "AboutUs", icon: <FitnessCenterIcon />, link: "#AboutUs" },
       { text: "Contact", icon: <ContactMailIcon />, link: "#contact" },
     ],
     []
@@ -42,6 +42,14 @@ const Header = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleNavigation = (event, targetId) => {
+    event.preventDefault(); // منع السلوك الافتراضي للرابط
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <>
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
@@ -51,7 +59,12 @@ const Header = () => {
           {!isMobile && (
             <nav className="nav-links">
               {menuItems.map((item, index) => (
-                <a key={index} href={item.link} className="nav-item">
+                <a
+                  key={index}
+                  className="nav-item"
+                  onClick={(e) => handleNavigation(e, item.link)}
+                  href={item.link}
+                >
                   {item.text}
                 </a>
               ))}
@@ -86,7 +99,12 @@ const Header = () => {
             <List>
               {menuItems.map((item, index) => (
                 <ListItem key={index} disablePadding>
-                  <ListItemButton component="a" href={item.link} onClick={() => setMobileOpen(false)}>
+                  <ListItemButton
+                    onClick={(e) => {
+                      handleNavigation(e, item.link);
+                      setMobileOpen(false);
+                    }}
+                  >
                     <ListItemIcon sx={{ color: "#bb86fc" }}>{item.icon}</ListItemIcon>
                     <ListItemText primary={item.text} sx={{ color: "#ffffff" }} />
                   </ListItemButton>

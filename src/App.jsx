@@ -3,9 +3,11 @@ import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import ReasonsToJoin from "./components/ReasonsToJoin";
 import GymMembership from "./components/GymMembership";
-import AboutUs from "./components/AboutUs";
+import AboutUs from "./components/AboutUs.jsx";
 import TrainersStaff from "./components/TrainersStaff";
-import Footer from "./components/Footer";
+import WhatsApp from "./components/whatsapp.jsx"
+import Footer from "./components/Footer.jsx";
+import Policies from "./components/Policies.jsx"
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./App.css";
 
@@ -20,11 +22,12 @@ const App = () => {
     <div className="app">
       <ThemeProvider theme={theme}>
         <Header />
+        <WhatsApp />
         <HeroSection />
         <ReasonsToJoin />
         <GymMembership />
         <AboutUs />
-        <TrainersStaff />
+        <Policies />
         <Footer />
       </ThemeProvider>
     </div>

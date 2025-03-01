@@ -9,6 +9,7 @@ header {
   top: 0;
   left: 0;
   z-index: 1000;
+  direction: ltr;
 }
 
 header.scrolled {
@@ -37,6 +38,8 @@ header.scrolled {
   gap: 30px;
   font-family: "Nosifer", serif;
   font-weight: bold;
+  direction: ltr;
+
 }
 
 .nav-item {
@@ -72,6 +75,7 @@ header.scrolled {
   border: none;
   color: white;
   cursor: pointer;
+  direction: ltr;
 }
 
 .drawer {

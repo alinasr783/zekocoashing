@@ -10,58 +10,56 @@ gsap.registerPlugin(ScrollTrigger);
 const HeroSection = () => {
   const textRef = useRef(null);
 
-  {/*useLayoutEffect(() => {
-    const text = textRef.current.textContent; // الحصول على النص الكامل
-    textRef.current.innerHTML = ""; // مسح المحتوى الحالي
+  useLayoutEffect(() => {
+    const text = textRef.current.textContent;
+    textRef.current.innerHTML = "";
 
-    // إنشاء عنصر span لكل حرف (بما في ذلك المسافات)
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
+    // تقسيم النص إلى كلمات ومسافات
+    const tokens = text.match(/(\S+|\s+)/g) || [];
 
-      // معالجة المسافات
-      if (char === " ") {
+    tokens.forEach((token) => {
+      if (token.trim() === "") {
+        // معالجة المسافات
         const spaceSpan = document.createElement("span");
-        spaceSpan.style.whiteSpace = "pre"; // الحفاظ على المسافات
-        spaceSpan.innerHTML = "&nbsp;"; // استخدام مسافة غير قابلة للكسر
+        spaceSpan.style.whiteSpace = "pre";
+        spaceSpan.textContent = token;
         textRef.current.appendChild(spaceSpan);
-        continue;
+      } else {
+        // إنشاء عنصر لكل كلمة
+        const wordSpan = document.createElement("span");
+        wordSpan.style.display = "inline-block";
+        wordSpan.textContent = token;
+        textRef.current.appendChild(wordSpan);
       }
+    });
 
-      const charSpan = document.createElement("span");
-      charSpan.textContent = char;
-      charSpan.style.display = "inline-block"; // مهم للاتجاه العربي
-      textRef.current.appendChild(charSpan);
-    }
-
-    let previousScrollY = window.scrollY; // لتتبع موضع التمرير السابق
-    const scrollThreshold = 1; // كل 1 بكسل
+    let previousScrollY = window.scrollY;
+    const scrollThreshold = 1;
 
     ScrollTrigger.create({
       onUpdate: (self) => {
         const scrollY = window.scrollY;
-        const scrollDelta = scrollY - previousScrollY; // الفرق بين التمرير الحالي والسابق
+        const scrollDelta = scrollY - previousScrollY;
 
         // التمرير لأسفل
         if (scrollDelta > 0) {
           if (Math.abs(scrollDelta) >= scrollThreshold) {
-            // اختيار عدد عشوائي من الحروف (من 1 إلى 3)
-            const randomCharsToMove = gsap.utils.random(1, 3, 1); // 1, 2, أو 3
+            const words = Array.from(textRef.current.children).filter(
+              (child) => child.style.display === "inline-block"
+            );
 
-            // تحديد الحروف التي ستتفتت (الحروف التي لا تزال مرئية)
-            const charsToAnimate = [];
-            for (let i = 0; i < textRef.current.children.length; i++) {
-              if (gsap.getProperty(textRef.current.children[i], "opacity") === 1) {
-                charsToAnimate.push(textRef.current.children[i]);
-                if (charsToAnimate.length >= randomCharsToMove) break;
-              }
-            }
+            const randomWordsToMove = gsap.utils.random(1, 3, 1);
+            const visibleWords = words.filter(
+              (word) => gsap.getProperty(word, "opacity") === 1
+            );
 
-            // تحريك الحروف المحددة
-            gsap.to(charsToAnimate, {
+            const wordsToAnimate = visibleWords.slice(0, randomWordsToMove);
+
+            gsap.to(wordsToAnimate, {
               opacity: 0,
-              x: () => gsap.utils.random(-50, 50), // تقليل المدى الأفقي
+              x: () => gsap.utils.random(-50, 50),
               y: () => gsap.utils.random(-100, 50),
-              rotate: () => gsap.utils.random(-30, 30), // تقليل الدوران
+              rotate: () => gsap.utils.random(-30, 30),
               scale: 0.5,
               duration: 0.7,
               ease: "power3.out",
@@ -71,17 +69,16 @@ const HeroSection = () => {
         // التمرير لأعلى
         else if (scrollDelta < 0 || scrollY === 0) {
           if (Math.abs(scrollDelta) >= scrollThreshold || scrollY === 0) {
-            // تحديد الحروف التي تم تفتيتها (الحروف غير مرئية)
-            const charsToReset = [];
-            for (let i = 0; i < textRef.current.children.length; i++) {
-              if (gsap.getProperty(textRef.current.children[i], "opacity") === 0) {
-                charsToReset.push(textRef.current.children[i]);
-              }
-            }
+            const words = Array.from(textRef.current.children).filter(
+              (child) => child.style.display === "inline-block"
+            );
 
-            // إعادة جميع الحروف إذا كنا في أعلى الصفحة
+            const hiddenWords = words.filter(
+              (word) => gsap.getProperty(word, "opacity") === 0
+            );
+
             if (scrollY === 0) {
-              gsap.to(textRef.current.children, {
+              gsap.to(words, {
                 opacity: 1,
                 x: 0,
                 y: 0,
@@ -91,7 +88,7 @@ const HeroSection = () => {
                 ease: "power2.out",
               });
             } else {
-              gsap.to(charsToReset, {
+              gsap.to(hiddenWords, {
                 opacity: 1,
                 x: 0,
                 y: 0,
@@ -104,14 +101,17 @@ const HeroSection = () => {
           }
         }
 
-        previousScrollY = scrollY; // تحديث موضع التمرير السابق
+        previousScrollY = scrollY;
       },
     });
 
-    // إضافة event listener للتحقق من الوصول إلى أعلى الصفحة
     window.addEventListener("scroll", () => {
       if (window.scrollY === 0) {
-        gsap.to(textRef.current.children, {
+        const words = Array.from(textRef.current.children).filter(
+          (child) => child.style.display === "inline-block"
+        );
+
+        gsap.to(words, {
           opacity: 1,
           x: 0,
           y: 0,
@@ -127,26 +127,28 @@ const HeroSection = () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       window.removeEventListener("scroll", () => {});
     };
-  }, []);*/}
+  }, []);
 
   return (
-    <div className="landing">
+    <div className="landing" id="home">
       <div className="landing-bg">
         <img src={heroImage} alt="Hero Background" />
         <div className="landing-overlay"></div>
       </div>
 
       <div className="landing-inner">
-        <Typography variant="h4" className="landing-text" ref={textRef}>
-          <p className="arabic">التدريب جنون والجنون فنون مع البروفيسور المجنون</p> 
+        <Typography variant="h4" className="landing-text">
+          <p className="arabic" ref={textRef}>
+            التدريب جنون والجنون فنون مع البروفيسور المجنون
+          </p>
           <p className="english">YAHIA ZEKO</p>
         </Typography>
-        <Button variant="contained" className="landing-btn">
-          Detailed
-        </Button>
+        <button variant="contained" className="landing-btn">
+          <a href="#packages"> Packages </a>
+        </button>
       </div>
     </div>
   );
 };
 
-export default HeroSection;
+export default HeroSection

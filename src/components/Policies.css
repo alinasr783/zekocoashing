@@ -1,0 +1,38 @@
+.policies-container {
+  background-color: #121212; /* خلفية داكنة */
+  color: #ffffff; /* لون النص */
+  text-align: center;
+  padding: 20px;
+  min-height: 60vh;
+}
+
+.policies-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color : lawngreen;
+}
+
+.policy-section {
+  background-color: #1e1e1e; /* لون أغمق لمحتوى السياسة */
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.policy-section h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color : #4bdb59;
+  text-align: right;
+}
+
+.policy-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #f0f0f0;
+  text-align: right;
+}
