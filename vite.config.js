@@ -30,9 +30,5 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
-    allowedHosts: [
-      '92b23946-b306-4aa3-9c77-a30b60f3152a-00-3fitgp55wmt51.kirk.replit.dev'
-    ]
-  },
+  base : "/"
 });

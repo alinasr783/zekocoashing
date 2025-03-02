@@ -7,6 +7,7 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useMediaQuery, useTheme } from "@mui/material";
+import logo from "../assets/logo.png";
 import "./Header.css";
 
 const Header = () => {
@@ -54,7 +55,9 @@ const Header = () => {
     <>
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
         <div className="toolbar">
-          <h1 className="logo">GYM+</h1>
+          <h1 className="logo">
+            <img src={logo} />
+          </h1>
 
           {!isMobile && (
             <nav className="nav-links">
