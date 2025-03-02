@@ -13,6 +13,7 @@ import "./Header.css";
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showButton, setShowButton] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -33,6 +34,7 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      setShowButton(window.scrollY > 200);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,11 +42,18 @@ const Header = () => {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const scrollStep = -window.scrollY / 15;
+    const scrollAnimation = () => {
+      if (window.scrollY !== 0) {
+        window.scrollBy(0, scrollStep);
+        requestAnimationFrame(scrollAnimation);
+      }
+    };
+    requestAnimationFrame(scrollAnimation);
   };
 
   const handleNavigation = (event, targetId) => {
-    event.preventDefault(); // منع السلوك الافتراضي للرابط
+    event.preventDefault();
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -55,19 +64,14 @@ const Header = () => {
     <>
       <header className={`header ${scrolled ? "scrolled" : ""}`}>
         <div className="toolbar">
-          <h1 className="logo">
-            <img src={logo} />
-          </h1>
+          <div className="logo">
+            <img src={logo} alt="Logo" />
+          </div>
 
           {!isMobile && (
             <nav className="nav-links">
               {menuItems.map((item, index) => (
-                <a
-                  key={index}
-                  className="nav-item"
-                  onClick={(e) => handleNavigation(e, item.link)}
-                  href={item.link}
-                >
+                <a key={index} className="nav-item" onClick={(e) => handleNavigation(e, item.link)} href={item.link}>
                   {item.text}
                 </a>
               ))}
@@ -75,13 +79,7 @@ const Header = () => {
           )}
 
           {isMobile && (
-            <IconButton
-              edge="end"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerToggle}
-              className="menu-button"
-            >
+            <IconButton edge="end" color="inherit" aria-label="menu" onClick={handleDrawerToggle} className="menu-button">
               <MenuIcon />
             </IconButton>
           )}
@@ -118,8 +116,8 @@ const Header = () => {
         </Drawer>
       )}
 
-      {scrolled && (
-        <button className="back-to-top" onClick={scrollToTop}>
+      {showButton && (
+        <button className="back-to-top" onClick={scrollToTop} style={{ opacity: showButton ? 1 : 0, transition: "opacity 0.3s" }}>
           <ArrowUpwardIcon />
         </button>
       )}

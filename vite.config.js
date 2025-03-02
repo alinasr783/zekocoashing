@@ -11,18 +11,18 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: 'My PWA App',
-        short_name: 'PWA',
-        description: 'My Vite + React PWA App',
+        name: 'Zeko Coaching',
+        short_name: 'ZC',
+        description: 'Zeko Coaching',
         theme_color: '#ffffff',
         icons: [
           {
-            src: '/icon-192x192.png',
+            src: './src/assets/logo.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/icon-512x512.png',
+            src: './src/assets/logo.png',
             sizes: '512x512',
             type: 'image/png',
           },
@@ -30,5 +30,10 @@ export default defineConfig({
       },
     }),
   ],
-  base : "/"
+  base : "/",
+  server: {
+    allowedHosts: [
+      '92b23946-b306-4aa3-9c77-a30b60f3152a-00-3fitgp55wmt51.kirk.replit.dev'
+    ]
+  },
 });
