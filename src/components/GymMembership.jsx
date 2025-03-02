@@ -152,7 +152,7 @@ const GymMembership = () => {
             {!paymentDone ? (
               <button className="payment-btn" onClick={() => setPaymentDone(true)}>تمت عملية الدفع</button>
             ) : (
-              <a href="https://wa.me/01067203240" className="whatsapp-btn2">
+              <a href="https://wa.me/201067203240" className="whatsapp-btn2">
          قم بإرسال اسكرين التحويل وتواصل مع الكابتن 
               </a>
             )}
