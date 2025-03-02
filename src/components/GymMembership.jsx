@@ -48,7 +48,7 @@ const plans = [
     ] 
   },
   { 
-    name: "100 Days - VIP", 
+    name: "100 Day - VIP", 
     price: "$150", 
     benefits: [
       "جدول دايت مناسب لهدفك ويومك",

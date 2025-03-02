@@ -14,10 +14,12 @@ const Footer = () => {
             <FontAwesomeIcon icon={faMapMarkerAlt} /> القاهرة، مصر
           </div>
           <div className="footer-contact-item">
-            <FontAwesomeIcon icon={faPhone} /> 0106 720 3240
+            <FontAwesomeIcon icon={faPhone} />
+            <span>0106<span></span>720<span></span>3240</span>
           </div>
           <div className="footer-contact-item">
-            <FontAwesomeIcon icon={faEnvelope} /> yahyahatem53@gmail.com
+            <FontAwesomeIcon icon={faEnvelope} />
+            <span>yahyahatem53@gmail.com</span>
           </div>
         </div>
 

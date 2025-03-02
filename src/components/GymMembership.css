@@ -83,6 +83,7 @@ h2 {
   margin-bottom: 10px;
   position: relative;
   padding-bottom: 8px;
+  direction: ltr;
 }
 
 .plan-title::after {
