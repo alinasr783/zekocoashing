@@ -7,33 +7,28 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      devOptions: {
-        enabled: true,
-      },
       manifest: {
-        name: 'Zeko Coaching',
-        short_name: 'ZC',
-        description: 'Zeko Coaching',
+        name: 'Zekocoashing',
+        short_name: 'Zeko',
         theme_color: '#ffffff',
         icons: [
           {
-            src: './src/assets/logo.png',
+            src: 'pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
-            src: './src/assets/logo.png',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
-    }),
+            type: 'image/png'
+          }
+        ]
+      }
+    })
   ],
-  base : "/",
   server: {
     allowedHosts: [
-      '92b23946-b306-4aa3-9c77-a30b60f3152a-00-3fitgp55wmt51.kirk.replit.dev'
+      'ba7de31e-e694-4b2b-b217-4cc0f6d1501a-00-1gawtt48cayn6.worf.replit.dev'
     ]
-  },
+  }
 });
