@@ -1,19 +1,34 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
-import { Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider } from "@mui/material";
+import { 
+  Drawer, 
+  IconButton, 
+  List, 
+  ListItem, 
+  ListItemButton, 
+  ListItemIcon, 
+  ListItemText, 
+  Divider,
+  Slide,
+  Fade,
+  Grow
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
-import PeopleIcon from "@mui/icons-material/People";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import GroupWorkIcon from "@mui/icons-material/GroupWork";
+import InfoIcon from "@mui/icons-material/Info";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import CloseIcon from "@mui/icons-material/Close";
 import { useMediaQuery, useTheme } from "@mui/material";
-import logo from "../assets/logo.png";
+import { motion } from "framer-motion";
+import logo from "../assets/logo.jpg";
 import "./Header.css";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -24,8 +39,8 @@ const Header = () => {
   const menuItems = useMemo(
     () => [
       { text: "Home", icon: <HomeIcon />, link: "#home" },
-      { text: "Packages", icon: <PeopleIcon />, link: "#packages" },
-      { text: "AboutUs", icon: <FitnessCenterIcon />, link: "#AboutUs" },
+      { text: "Packages", icon: <GroupWorkIcon />, link: "#packages" },
+      { text: "About", icon: <InfoIcon />, link: "#about" },
       { text: "Contact", icon: <ContactMailIcon />, link: "#contact" },
     ],
     []
@@ -33,7 +48,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 10);
       setShowButton(window.scrollY > 200);
     };
 
@@ -42,85 +57,170 @@ const Header = () => {
   }, []);
 
   const scrollToTop = () => {
-    const scrollStep = -window.scrollY / 15;
-    const scrollAnimation = () => {
-      if (window.scrollY !== 0) {
-        window.scrollBy(0, scrollStep);
-        requestAnimationFrame(scrollAnimation);
-      }
-    };
-    requestAnimationFrame(scrollAnimation);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   const handleNavigation = (event, targetId) => {
     event.preventDefault();
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      targetElement.scrollIntoView({ 
+        behavior: "smooth", 
+        block: "start" 
+      });
     }
+    setMobileOpen(false);
   };
 
   return (
     <>
-      <header className={`header ${scrolled ? "scrolled" : ""}`}>
+      <motion.header 
+        className={`header ${scrolled ? "scrolled" : ""}`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
         <div className="toolbar">
-          <div className="logo">
+          <motion.div 
+            className="logo"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <img src={logo} alt="Logo" />
-          </div>
+          </motion.div>
 
           {!isMobile && (
             <nav className="nav-links">
               {menuItems.map((item, index) => (
-                <a key={index} className="nav-item" onClick={(e) => handleNavigation(e, item.link)} href={item.link}>
+                <motion.a
+                  key={index}
+                  className={`nav-item ${hoveredItem === index ? "active" : ""}`}
+                  onClick={(e) => handleNavigation(e, item.link)}
+                  href={item.link}
+                  onMouseEnter={() => setHoveredItem(index)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
                   {item.text}
-                </a>
+                  {hoveredItem === index && (
+                    <motion.span 
+                      className="nav-item-highlight"
+                      layoutId="navHighlight"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </motion.a>
               ))}
             </nav>
           )}
 
           {isMobile && (
-            <IconButton edge="end" color="inherit" aria-label="menu" onClick={handleDrawerToggle} className="menu-button">
-              <MenuIcon />
-            </IconButton>
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <IconButton 
+                edge="end" 
+                color="inherit" 
+                aria-label="menu" 
+                onClick={handleDrawerToggle} 
+                className="menu-button"
+              >
+                {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+              </IconButton>
+            </motion.div>
           )}
         </div>
-      </header>
+      </motion.header>
 
       {isMobile && (
         <Drawer
-          anchor="left"
+          anchor="right"
           open={mobileOpen}
           onClose={handleDrawerToggle}
           className="drawer"
-          sx={{ "& .MuiDrawer-paper": { backgroundColor: "#121212", color: "#ffffff" } }}
+          sx={{ 
+            "& .MuiDrawer-paper": { 
+              backgroundColor: "#000000",
+              width: "75vw",
+              borderLeft: "2px solid #ff0000"
+            } 
+          }}
         >
           <div className="drawer-content">
-            <h2 className="drawer-title">Menu</h2>
-            <Divider sx={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }} />
+            <div className="drawer-header">
+              <motion.div 
+                className="logo"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <img src={logo} alt="Logo" />
+              </motion.div>
+              <IconButton onClick={handleDrawerToggle}>
+                <CloseIcon sx={{ color: "#ffffff" }} />
+              </IconButton>
+            </div>
+            <Divider sx={{ backgroundColor: "rgba(255, 0, 0, 0.3)" }} />
             <List>
               {menuItems.map((item, index) => (
-                <ListItem key={index} disablePadding>
-                  <ListItemButton
-                    onClick={(e) => {
-                      handleNavigation(e, item.link);
-                      setMobileOpen(false);
-                    }}
-                  >
-                    <ListItemIcon sx={{ color: "#bb86fc" }}>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.text} sx={{ color: "#ffffff" }} />
-                  </ListItemButton>
-                </ListItem>
+                <motion.div
+                  key={index}
+                  initial={{ x: 50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <ListItem disablePadding>
+                    <ListItemButton
+                      onClick={(e) => handleNavigation(e, item.link)}
+                      sx={{
+                        "&:hover": {
+                          backgroundColor: "rgba(255, 0, 0, 0.1)"
+                        }
+                      }}
+                    >
+                      <ListItemIcon sx={{ color: "#ff0000", minWidth: "40px" }}>
+                        {item.icon}
+                      </ListItemIcon>
+                      <ListItemText 
+                        primary={item.text} 
+                        primaryTypographyProps={{ 
+                          fontFamily: "'Montserrat', sans-serif",
+                          fontWeight: 600,
+                          fontSize: "1.1rem"
+                        }} 
+                        sx={{ color: "#ffffff" }} 
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                  {index < menuItems.length - 1 && (
+                    <Divider sx={{ backgroundColor: "rgba(255, 0, 0, 0.1)" }} />
+                  )}
+                </motion.div>
               ))}
             </List>
           </div>
         </Drawer>
       )}
 
-      {showButton && (
-        <button className="back-to-top" onClick={scrollToTop} style={{ opacity: showButton ? 1 : 0, transition: "opacity 0.3s" }}>
+      <Fade in={showButton}>
+        <motion.button 
+          className="back-to-top"
+          onClick={scrollToTop}
+          whileHover={{ scale: 1.1, backgroundColor: "#000000" }}
+          whileTap={{ scale: 0.9 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: showButton ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <ArrowUpwardIcon />
-        </button>
-      )}
+        </motion.button>
+      </Fade>
     </>
   );
 };
