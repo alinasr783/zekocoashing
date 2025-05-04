@@ -205,8 +205,14 @@ const GymMembership = () => {
           >
             <div className="plan-header">
               <h3 className="plan-name">{plan.name}</h3>
-              <div className="plan-price">
-                {plan.prices[userCurrency] || plan.prices.default}
+              <div className="plan-price-container">
+                <div className="plan-price">
+                  {plan.prices[userCurrency] || plan.prices.default}
+                </div>
+                <div className="plan-duration">
+                  <span className="duration-badge">3 MONTHS</span>
+                  <span className="duration-text">TRANSFORMATION PROGRAM</span>
+                </div>
               </div>
               <div className="price-underline"></div>
             </div>
@@ -305,6 +311,9 @@ const GymMembership = () => {
               <div className="selected-plan-info">
                 <h4>{selectedPlan.name}</h4>
                 <p>{selectedPlan.displayPrice}</p>
+                <div className="selected-plan-duration">
+                  <span className="duration-highlight">3 MONTHS PROGRAM</span>
+                </div>
               </div>
               <ul className="payment-methods-list">
                 {paymentMethods.map((method, index) => (
