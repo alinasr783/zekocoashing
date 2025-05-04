@@ -11,11 +11,11 @@ const plansData = [
   { 
     name: "Basic Plan", 
     prices: {
-      USD: "$30",
-      EGP: "EGP 500",
-      SAR: "SAR 110",
-      AED: "AED 110",
-      default: "$30"
+      USD: "$60",
+      EGP: "EGP 1500",
+      SAR: "SAR 220",
+      AED: "AED 220",
+      default: "$60"
     },
     benefits: [
       "جدول دايت مصمم لهدفك",
@@ -28,11 +28,11 @@ const plansData = [
   { 
     name: "Standard Plan", 
     prices: {
-      USD: "$40",
-      EGP: "EGP 700",
-      SAR: "SAR 150",
-      AED: "AED 150",
-      default: "$40"
+      USD: "$80",
+      EGP: "EGP 2500",
+      SAR: "SAR 290",
+      AED: "AED 290",
+      default: "$80"
     },
     benefits: [
       "جدول دايت مصمم لهدفك",
@@ -52,11 +52,11 @@ const plansData = [
   { 
     name: "Premium Plan", 
     prices: {
-      USD: "$60",
-      EGP: "EGP 1000",
-      SAR: "SAR 225",
-      AED: "AED 225",
-      default: "$60"
+      USD: "$120",
+      EGP: "EGP 3000",
+      SAR: "SAR 450",
+      AED: "AED 450",
+      default: "$120"
     },
     benefits: [
       "جدول دايت مصمم لهدفك",
@@ -79,11 +79,11 @@ const plansData = [
   { 
     name: "Steroids users", 
     prices: {
-      USD: "$100",
-      EGP: "EGP 1700",
-      SAR: "SAR 375",
-      AED: "AED 375",
-      default: "$100"
+      USD: "$200",
+      EGP: "EGP 4000",
+      SAR: "SAR 750",
+      AED: "AED 750",
+      default: "$200"
     },
     benefits: [
       "جدول دايت مصمم لهدفك",
