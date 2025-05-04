@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-cube";
-import { EffectCube, Pagination } from "swiper/modules";
-import { CheckCircle, ExpandMore, ExpandLess } from "@mui/icons-material"; 
+import { Pagination, Autoplay } from "swiper/modules";
+import { CheckCircle, ExpandMore, ExpandLess } from "@mui/icons-material";
+import { motion, AnimatePresence } from "framer-motion";
 import "./GymMembership.css";
 
-const plans = [
+const plansData = [
   { 
     name: "Basic Plan", 
-    price: "$30", 
+    prices: {
+      USD: "$30",
+      EGP: "EGP 500",
+      SAR: "SAR 110",
+      AED: "AED 110",
+      default: "$30"
+    },
     benefits: [
       "جدول دايت مصمم لهدفك",
       "جدول تدريب احترافي",
@@ -21,7 +27,13 @@ const plans = [
   },
   { 
     name: "Standard Plan", 
-    price: "$40", 
+    prices: {
+      USD: "$40",
+      EGP: "EGP 700",
+      SAR: "SAR 150",
+      AED: "AED 150",
+      default: "$40"
+    },
     benefits: [
       "جدول دايت مصمم لهدفك",
       "كتاب وصفات دايت بطريقه الوصفة",
@@ -39,7 +51,13 @@ const plans = [
   },
   { 
     name: "Premium Plan", 
-    price: "$60", 
+    prices: {
+      USD: "$60",
+      EGP: "EGP 1000",
+      SAR: "SAR 225",
+      AED: "AED 225",
+      default: "$60"
+    },
     benefits: [
       "جدول دايت مصمم لهدفك",
       "كتاب وصفات دايت بطريقه الوصفه",
@@ -60,7 +78,13 @@ const plans = [
   },
   { 
     name: "Steroids users", 
-    price: "$100", 
+    prices: {
+      USD: "$100",
+      EGP: "EGP 1700",
+      SAR: "SAR 375",
+      AED: "AED 375",
+      default: "$100"
+    },
     benefits: [
       "جدول دايت مصمم لهدفك",
       "كتاب وصفات دايت بطريقه الوصفه",
@@ -90,91 +114,237 @@ const paymentMethods = [
   { name: "Vodafone Cash", details: "0106 720 3240" },
 ];
 
+const countryCurrencyMap = {
+  US: "USD",
+  EG: "EGP",
+  SA: "SAR",
+  AE: "AED",
+  // Add more countries as needed
+};
+
 const GymMembership = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
   const [paymentDone, setPaymentDone] = useState(false);
+  const [userCurrency, setUserCurrency] = useState("default");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUserLocation = async () => {
+      try {
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        const currency = countryCurrencyMap[data.country] || "default";
+        setUserCurrency(currency);
+      } catch (error) {
+        console.error("Failed to fetch location:", error);
+        setUserCurrency("default");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserLocation();
+  }, []);
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
   const handleSubscribe = (plan) => {
-    setSelectedPlan(plan);
+    setSelectedPlan({
+      ...plan,
+      displayPrice: plan.prices[userCurrency] || plan.prices.default
+    });
     setShowPaymentPopup(true);
   };
 
-  return (
-    <div className="carousel" id="packages">
-      <h2>Packages</h2>
-      <div className="home-carousel">
-        <div className="home-carousel-content">
-          <Swiper
-            effect="cube"
-            grabCursor
-            cubeEffect={{ shadow: false, slideShadows: false }}
-            pagination={{ clickable: true, dynamicBullets: true }}
-            modules={[EffectCube, Pagination]}
-            className="home-carousel-content-swiper"
-          >
-            {plans.map((plan, index) => {
-              const isExpanded = expandedIndex === index;
-              const visibleBenefits = isExpanded ? plan.benefits : plan.benefits.slice(0, 4);
+  if (isLoading) {
+    return (
+      <div className="loading-overlay">
+        <div className="loading-spinner"></div>
+        <p>Detecting your location for accurate pricing...</p>
+      </div>
+    );
+  }
 
-              return (
-                <SwiperSlide key={index} className="plan-card">
-                  <div className="plan-card-content">
-                    <h3 className="plan-title">{plan.name}</h3>
-                    <p className="plan-price">{plan.price}</p>
-                    <ul className="plan-benefits">
-                      {visibleBenefits.map((benefit, i) => (
-                        <li key={i} className="plan-benefit">
-                          <CheckCircle />
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                    {plan.benefits.length > 4 && (
-                      <button className="show-more-btn" onClick={() => toggleExpand(index)}>
-                        {isExpanded ? "Show Less" : "Show More"}
-                        {isExpanded ? <ExpandLess /> : <ExpandMore />}
-                      </button>
-                    )}
-                    <button className="subscribe-btn" onClick={() => handleSubscribe(plan)}>
-                      اشتراك
-                    </button>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
+  return (
+    <div className="gym-membership-container" id="packages">
+      <motion.h2 
+        className="section-title"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        PREMIUM <span>PACKAGES</span>
+      </motion.h2>
+
+      <div className="currency-notice">
+        {userCurrency !== "default" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="currency-badge"
+          >
+            Displaying prices in {userCurrency}
+          </motion.div>
+        )}
       </div>
 
-      {/* نافذة الدفع */}
-      {showPaymentPopup && (
-        <div className="popup">
-          <div className="popup-content">
-            <h3>طرق الدفع</h3>
-            <ul className="payment-list">
-              {paymentMethods.map((method, index) => (
-                <li key={index} className="payment-method">
-                  <strong>{method.name} :</strong> {method.details}
-                </li>
+      <div className="plans-grid">
+        {plansData.map((plan, index) => (
+          <motion.div
+            key={index}
+            className="membership-plan"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -10 }}
+          >
+            <div className="plan-header">
+              <h3 className="plan-name">{plan.name}</h3>
+              <div className="plan-price">
+                {plan.prices[userCurrency] || plan.prices.default}
+              </div>
+              <div className="price-underline"></div>
+            </div>
+            <ul className="plan-benefits">
+              {plan.benefits.slice(0, 5).map((benefit, i) => (
+                <motion.li 
+                  key={i} 
+                  className="benefit-item"
+                  whileHover={{ x: 5 }}
+                >
+                  <CheckCircle className="benefit-icon" />
+                  <span>{benefit}</span>
+                </motion.li>
               ))}
             </ul>
-            {!paymentDone ? (
-              <button className="payment-btn" onClick={() => setPaymentDone(true)}>تمت عملية الدفع</button>
-            ) : (
-              <a href="https://wa.me/201067203240" className="whatsapp-btn2">
-         قم بإرسال اسكرين التحويل وتواصل مع الكابتن 
-              </a>
+            {plan.benefits.length > 5 && (
+              <motion.button 
+                className="toggle-benefits-btn" 
+                onClick={() => toggleExpand(index)}
+                whileTap={{ scale: 0.95 }}
+              >
+                {expandedIndex === index ? (
+                  <>
+                    <span>Show Less</span>
+                    <ExpandLess className="toggle-icon" />
+                  </>
+                ) : (
+                  <>
+                    <span>Show More</span>
+                    <ExpandMore className="toggle-icon" />
+                  </>
+                )}
+              </motion.button>
             )}
-            <button className="close-btn" onClick={() => setShowPaymentPopup(false)}>إغلاق</button>
-          </div>
-        </div>
-      )}
+            <AnimatePresence>
+              {expandedIndex === index && (
+                <motion.ul
+                  className="additional-benefits"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {plan.benefits.slice(5).map((benefit, i) => (
+                    <motion.li
+                      key={i + 5}
+                      className="benefit-item"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: i * 0.05 }}
+                    >
+                      <CheckCircle className="benefit-icon" />
+                      <span>{benefit}</span>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+            <motion.button
+              className="subscribe-btn"
+              onClick={() => handleSubscribe(plan)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              SUBSCRIBE NOW
+            </motion.button>
+          </motion.div>
+        ))}
+      </div>
+
+      <AnimatePresence>
+        {showPaymentPopup && (
+          <motion.div 
+            className="payment-popup-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div 
+              className="payment-popup-content"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+            >
+              <div className="payment-header">
+                <h3>PAYMENT METHODS</h3>
+                <motion.button 
+                  className="close-popup-btn"
+                  onClick={() => setShowPaymentPopup(false)}
+                  whileHover={{ rotate: 90 }}
+                >
+                  ×
+                </motion.button>
+              </div>
+              <div className="selected-plan-info">
+                <h4>{selectedPlan.name}</h4>
+                <p>{selectedPlan.displayPrice}</p>
+              </div>
+              <ul className="payment-methods-list">
+                {paymentMethods.map((method, index) => (
+                  <motion.li 
+                    key={index} 
+                    className="payment-method"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <div className="method-name">{method.name}</div>
+                    <div className="method-details">{method.details}</div>
+                  </motion.li>
+                ))}
+              </ul>
+              {!paymentDone ? (
+                <motion.button
+                  className="confirm-payment-btn"
+                  onClick={() => setPaymentDone(true)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  CONFIRM PAYMENT
+                </motion.button>
+              ) : (
+                <motion.a
+                  href="https://wa.me/201067203240"
+                  className="whatsapp-contact-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                >
+                  SEND PAYMENT PROOF VIA WHATSAPP
+                </motion.a>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

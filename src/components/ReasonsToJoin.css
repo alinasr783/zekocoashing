@@ -13,6 +13,7 @@
   position: relative;
   background: var(--secondary-color);
   padding: 5rem 1rem;
+  padding-top:0;
   overflow: hidden;
   border-top: 3px solid var(--primary-color);
   border-bottom: 3px solid var(--primary-color);
@@ -30,14 +31,14 @@
   pointer-events: none;
 }
 
-.section-title {
+.section-title-r {
   font-family: 'Oswald', sans-serif;
   font-size: clamp(2rem, 5vw, 4rem);
   text-transform: uppercase;
   color: var(--text-color);
   text-align: center;
-  margin-bottom: 6rem;
-  margin-top:-3rem;
+  padding-bottom: 50px;
+  margin-bottom: 20px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -65,8 +66,10 @@
   display: inline-block;
 }
 
-.section-title::before,
-.section-title::after {
+.section-title-r::before,
+.section-title-r::after,
+.section-title::after,
+.section-title::before{
   content: '';
   position: absolute;
   top: 50%;
@@ -75,11 +78,13 @@
   background: linear-gradient(90deg, transparent, var(--primary-color));
 }
 
-.section-title::before {
+.section-title::before,
+.section-title-r::before{
   left: 0;
 }
 
-.section-title::after {
+.section-title::after, 
+.section-title-r::after{
   right: 0;
   background: linear-gradient(90deg, var(--primary-color), transparent);
 }

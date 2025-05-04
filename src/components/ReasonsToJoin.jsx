@@ -60,7 +60,7 @@ const ReasonsToJoin = () => {
     <section className="transformation-showcase" ref={sectionRef}>
       <div className="blood-drip-overlay"></div>
 
-      <h2 className="section-title" ref={titleRef}>
+      <h2 className="section-title-r" ref={titleRef}>
         <span className="title-before">BEFORE</span>
         <span className="title-slash">//</span>
         <span className="title-after">AFTER</span>
