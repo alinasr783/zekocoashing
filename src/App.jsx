@@ -5,6 +5,7 @@ import ReasonsToJoin from "./components/ReasonsToJoin";
 import GymMembership from "./components/GymMembership";
 import AboutUs from "./components/AboutUs.jsx";
 import TrainersStaff from "./components/TrainersStaff";
+import Ai from "./components/ai.jsx"
 import WhatsApp from "./components/whatsapp.jsx"
 import Footer from "./components/Footer.jsx";
 import Policies from "./components/Policies.jsx"
@@ -29,6 +30,7 @@ const App = () => {
         <AboutUs />
         <Policies />
         <Footer />
+        <Ai />
       </ThemeProvider>
     </div>
   );
