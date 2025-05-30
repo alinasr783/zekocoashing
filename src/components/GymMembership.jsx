@@ -8,8 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./GymMembership.css";
 
 const plansData = [
-  { 
-    name: "Basic Plan", 
+  // === 3 Months Plans ===
+  {
+    name: "Basic Plan - 3 Months",
     prices: {
       USD: "$60",
       EGP: "EGP 1500",
@@ -23,10 +24,10 @@ const plansData = [
       "كتاب بدائل محسوب الكالوري",
       "فايل للاسترتشات قبل وبعد التمرين",
       "متابعه اسبوعيه علي الواتساب"
-    ] 
+    ]
   },
-  { 
-    name: "Standard Plan", 
+  {
+    name: "Standard Plan - 3 Months",
     prices: {
       USD: "$80",
       EGP: "EGP 2500",
@@ -42,15 +43,15 @@ const plansData = [
       "جدول لاداره وقتك لجعل صحتك اولويه",
       "جدول تدريبي احترافي",
       "فايل للاسترتشات قبل وبعد التمرين",
-      "مراجعه تمرينك وتعديل الأداء ",
+      "مراجعه تمرينك وتعديل الأداء",
       "شيت لتسجيل الاوزان لمراقبه تطوك",
       "فايل للكارديو مناسب لهدفك",
       "فايل تعليمي لكسر المعلومات الخاطئه",
       "متابعه يوميه ع الواتساب"
-    ] 
+    ]
   },
-  { 
-    name: "Premium Plan", 
+  {
+    name: "Premium Plan - 3 Months",
     prices: {
       USD: "$120",
       EGP: "EGP 3000",
@@ -66,7 +67,7 @@ const plansData = [
       "جدول لاداره وقتك لجعل صحتك اولويه",
       "جدول تدريبي احترافي",
       "فايل للاسترتشات قبل وبعد التمرين",
-      "مراجعه تمرينك وتعديل الأداء ",
+      "مراجعه تمرينك وتعديل الأداء",
       "شيت لتسجيل الاوزان لمراقبه تطوك",
       "فايل للكارديو مناسب لهدفك",
       "فايل تعليمي لكسر المعلومات الخاطئه",
@@ -74,10 +75,10 @@ const plansData = [
       "مكالمه بدايه الاشتراك 10 دقائق",
       "مكالمه فيديو كل اسبوعين لعمل ابديت",
       "كشف مجانا مع دكتور علاج طبيعي"
-    ] 
+    ]
   },
-  { 
-    name: "Steroids users", 
+  {
+    name: "Steroids Users - 3 Months",
     prices: {
       USD: "$200",
       EGP: "EGP 4000",
@@ -93,16 +94,205 @@ const plansData = [
       "جدول لاداره وقتك لجعل صحتك اولويه",
       "جدول تدريبي احترافي",
       "فايل للاسترتشات قبل وبعد التمرين",
-      "مراجعه تمرينك وتعديل الأداء ",
+      "مراجعه تمرينك وتعديل الأداء",
       "شيت لتسجيل الاوزان لمراقبه تطوك",
       "فايل للكارديو مناسب لهدفك",
       "فايل تعليمي لكسر المعلومات الخاطئه",
       "متابعه ع الواتساب يوميه",
       "مكالمه بدايه الاشتراك",
-      "مكالمه فيديو كل أسبوع video call ",
-      "متاح مكالمات تلفونيه ف اي وقت ف اليوم ",
+      "مكالمه فيديو كل أسبوع video call",
+      "متاح مكالمات تلفونيه ف اي وقت ف اليوم",
       "كشف وجلسه مجانا مع دكتور علاج طبيعي محترف"
-    ] 
+    ]
+  },
+
+  // === 6 Months Plans ===
+  {
+    name: "Basic Plan - 6 Months",
+    prices: {
+      USD: "$110",
+      EGP: "EGP 2500",
+      SAR: "SAR 400",
+      AED: "AED 400",
+      default: "$110"
+    },
+    benefits: [
+      "نفس مميزات باقة الـ3 شهور الأساسية",
+      "تطوير متقدم للجدول كل شهرين",
+      "دعم مستمر لتثبيت العادات الصحية"
+    ]
+  },
+  {
+    name: "Standard Plan - 6 Months",
+    prices: {
+      USD: "$150",
+      EGP: "EGP 4500",
+      SAR: "SAR 550",
+      AED: "AED 550",
+      default: "$150"
+    },
+    benefits: [
+      "كل مميزات الباقة الأساسية",
+      "إعادة تقييم كل شهر",
+      "إضافة جلسة صوتية شهرية",
+      "متابعة تدريب بالفيديو كل أسبوعين"
+    ]
+  },
+  {
+    name: "Premium Plan - 6 Months",
+    prices: {
+      USD: "$200",
+      EGP: "EGP 5500",
+      SAR: "SAR 800",
+      AED: "AED 800",
+      default: "$200"
+    },
+    benefits: [
+      "كل مميزات الباقات السابقة",
+      "جلسة متابعة فيديو شهرية",
+      "خطة مكملات مفصلة حسب الحالة",
+      "أولوية الدعم والرد السريع"
+    ]
+  },
+  {
+    name: "Steroids Users - 6 Months",
+    prices: {
+      USD: "$400",
+      EGP: "EGP 8000",
+      SAR: "SAR 3000",
+      AED: "AED 3000",
+      default: "$400"
+    },
+    benefits: [
+      "كل مميزات باقة الستيرويدز العادية",
+      "جدول هرموني مخصص",
+      "متابعة تحليل دم ربع سنوية",
+      "استشارة طبية متقدمة"
+    ]
+  },
+
+  // === 9 Months Plans ===
+  {
+    name: "Basic Plan - 9 Months",
+    prices: {
+      USD: "$160",
+      EGP: "EGP 4000",
+      SAR: "SAR 620",
+      AED: "AED 620",
+      default: "$160"
+    },
+    benefits: [
+      "نفس مميزات الـ6 شهور",
+      "متابعة تحليل إنبودي إن أمكن",
+      "جداول دايت متنوعة حسب المرحلة"
+    ]
+  },
+  {
+    name: "Standard Plan - 9 Months",
+    prices: {
+      USD: "$210",
+      EGP: "EGP 7000",
+      SAR: "SAR 820",
+      AED: "AED 820",
+      default: "$210"
+    },
+    benefits: [
+      "كل مميزات Standard 6 شهور",
+      "دعم مكثف أثناء الفترات الحرجة",
+      "تعديل النظام عند الثبات"
+    ]
+  },
+  {
+    name: "Premium Plan - 9 Months",
+    prices: {
+      USD: "$550",
+      EGP: "EGP 8000",
+      SAR: "SAR 1250",
+      AED: "AED 1250",
+      default: "$550"
+    },
+    benefits: [
+      "نفس مميزات Premium 6 شهور",
+      "جلسات تعليمية خاصة",
+      "إعدادك لأسلوب حياة طويل الأمد"
+    ]
+  },
+  {
+    name: "Steroids Users - 9 Months",
+    prices: {
+      USD: "$600",
+      EGP: "EGP 12000",
+      SAR: "SAR 2250",
+      AED: "AED 2250",
+      default: "$600"
+    },
+    benefits: [
+      "نفس مميزات Steroids 6 شهور",
+      "إشراف طبي أكثر دقة",
+      "تحديثات شهرية شاملة"
+    ]
+  },
+
+  // === 12 Months Plans ===
+  {
+    name: "Basic Plan - 12 Months",
+    prices: {
+      USD: "$220",
+      EGP: "EGP 5000",
+      SAR: "SAR 850",
+      AED: "AED 850",
+      default: "$220"
+    },
+    benefits: [
+      "جداول مخصصة للمراحل المختلفة",
+      "متابعة سنوية دقيقة",
+      "استمرارية ودعم لحياة صحية شاملة"
+    ]
+  },
+  {
+    name: "Standard Plan - 12 Months",
+    prices: {
+      USD: "$300",
+      EGP: "EGP 9000",
+      SAR: "SAR 1000",
+      AED: "AED 1000",
+      default: "$300"
+    },
+    benefits: [
+      "توسيع للمحتوى التعليمي",
+      "جلسات تقييم كل ربع سنة",
+      "خطة تطوير تدريجي مستمر"
+    ]
+  },
+  {
+    name: "Premium Plan - 12 Months",
+    prices: {
+      USD: "$450",
+      EGP: "EGP 11000",
+      SAR: "SAR 1500",
+      AED: "AED 1500",
+      default: "$450"
+    },
+    benefits: [
+      "أولوية قصوى في الدعم والتعديلات",
+      "جلسات VIP كل شهر",
+      "خطة دايت موسمية متغيرة"
+    ]
+  },
+  {
+    name: "Steroids Users - 12 Months",
+    prices: {
+      USD: "$1600",
+      EGP: "EGP 10000",
+      SAR: "SAR 3000",
+      AED: "AED 3000",
+      default: "$1600"
+    },
+    benefits: [
+      "إشراف كامل شامل سنوي",
+      "تحاليل دورية وتحكم هرموني دقيق",
+      "جلسات دكتور متقدمة حسب الحاجة"
+    ]
   }
 ];
 
@@ -210,7 +400,6 @@ const GymMembership = () => {
                   {plan.prices[userCurrency] || plan.prices.default}
                 </div>
                 <div className="plan-duration">
-                  <span className="duration-badge">3 MONTHS</span>
                   <span className="duration-text">TRANSFORMATION PROGRAM</span>
                 </div>
               </div>
