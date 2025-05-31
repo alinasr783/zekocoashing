@@ -3,14 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import { CheckCircle, ExpandMore, ExpandLess } from "@mui/icons-material";
+import { CheckCircle, ExpandMore, ExpandLess, Star } from "@mui/icons-material";
 import { motion, AnimatePresence } from "framer-motion";
 import "./GymMembership.css";
 
 const plansData = [
   // === 3 Months Plans ===
   {
-    name: "Basic Plan - 3 Months",
+    name: "Basic Plan",
+    duration: "3 Months",
     prices: {
       USD: "$60",
       EGP: "EGP 1500",
@@ -24,10 +25,12 @@ const plansData = [
       "كتاب بدائل محسوب الكالوري",
       "فايل للاسترتشات قبل وبعد التمرين",
       "متابعه اسبوعيه علي الواتساب"
-    ]
+    ],
+    popular: false
   },
   {
-    name: "Standard Plan - 3 Months",
+    name: "Standard Plan",
+    duration: "3 Months",
     prices: {
       USD: "$80",
       EGP: "EGP 2500",
@@ -48,10 +51,12 @@ const plansData = [
       "فايل للكارديو مناسب لهدفك",
       "فايل تعليمي لكسر المعلومات الخاطئه",
       "متابعه يوميه ع الواتساب"
-    ]
+    ],
+    popular: true
   },
   {
-    name: "Premium Plan - 3 Months",
+    name: "Premium Plan",
+    duration: "3 Months",
     prices: {
       USD: "$120",
       EGP: "EGP 3000",
@@ -75,10 +80,12 @@ const plansData = [
       "مكالمه بدايه الاشتراك 10 دقائق",
       "مكالمه فيديو كل اسبوعين لعمل ابديت",
       "كشف مجانا مع دكتور علاج طبيعي"
-    ]
+    ],
+    popular: false
   },
   {
-    name: "Steroids Users - 3 Months",
+    name: "Steroids Users",
+    duration: "3 Months",
     prices: {
       USD: "$200",
       EGP: "EGP 4000",
@@ -103,12 +110,14 @@ const plansData = [
       "مكالمه فيديو كل أسبوع video call",
       "متاح مكالمات تلفونيه ف اي وقت ف اليوم",
       "كشف وجلسه مجانا مع دكتور علاج طبيعي محترف"
-    ]
+    ],
+    popular: false
   },
 
   // === 6 Months Plans ===
   {
-    name: "Basic Plan - 6 Months",
+    name: "Basic Plan",
+    duration: "6 Months",
     prices: {
       USD: "$110",
       EGP: "EGP 2500",
@@ -119,11 +128,15 @@ const plansData = [
     benefits: [
       "نفس مميزات باقة الـ3 شهور الأساسية",
       "تطوير متقدم للجدول كل شهرين",
-      "دعم مستمر لتثبيت العادات الصحية"
-    ]
+      "دعم مستمر لتثبيت العادات الصحية",
+      "متابعة شهرية مكثفة",
+      "تحديثات دورية على النظام الغذائي"
+    ],
+    popular: false
   },
   {
-    name: "Standard Plan - 6 Months",
+    name: "Standard Plan",
+    duration: "6 Months",
     prices: {
       USD: "$150",
       EGP: "EGP 4500",
@@ -135,11 +148,15 @@ const plansData = [
       "كل مميزات الباقة الأساسية",
       "إعادة تقييم كل شهر",
       "إضافة جلسة صوتية شهرية",
-      "متابعة تدريب بالفيديو كل أسبوعين"
-    ]
+      "متابعة تدريب بالفيديو كل أسبوعين",
+      "تحديثات شاملة كل شهرين",
+      "دعم متقدم عبر الواتساب"
+    ],
+    popular: true
   },
   {
-    name: "Premium Plan - 6 Months",
+    name: "Premium Plan",
+    duration: "6 Months",
     prices: {
       USD: "$200",
       EGP: "EGP 5500",
@@ -151,11 +168,15 @@ const plansData = [
       "كل مميزات الباقات السابقة",
       "جلسة متابعة فيديو شهرية",
       "خطة مكملات مفصلة حسب الحالة",
-      "أولوية الدعم والرد السريع"
-    ]
+      "أولوية الدعم والرد السريع",
+      "تقييم شامل كل شهرين",
+      "متابعة يومية مكثفة"
+    ],
+    popular: false
   },
   {
-    name: "Steroids Users - 6 Months",
+    name: "Steroids Users",
+    duration: "6 Months",
     prices: {
       USD: "$400",
       EGP: "EGP 8000",
@@ -167,13 +188,17 @@ const plansData = [
       "كل مميزات باقة الستيرويدز العادية",
       "جدول هرموني مخصص",
       "متابعة تحليل دم ربع سنوية",
-      "استشارة طبية متقدمة"
-    ]
+      "استشارة طبية متقدمة",
+      "متابعة يومية مكثفة",
+      "دعم فوري عبر المكالمات"
+    ],
+    popular: false
   },
 
   // === 9 Months Plans ===
   {
-    name: "Basic Plan - 9 Months",
+    name: "Basic Plan",
+    duration: "9 Months",
     prices: {
       USD: "$160",
       EGP: "EGP 4000",
@@ -184,11 +209,15 @@ const plansData = [
     benefits: [
       "نفس مميزات الـ6 شهور",
       "متابعة تحليل إنبودي إن أمكن",
-      "جداول دايت متنوعة حسب المرحلة"
-    ]
+      "جداول دايت متنوعة حسب المرحلة",
+      "تحديثات شهرية شاملة",
+      "دعم متقدم لتحقيق الأهداف"
+    ],
+    popular: false
   },
   {
-    name: "Standard Plan - 9 Months",
+    name: "Standard Plan",
+    duration: "9 Months",
     prices: {
       USD: "$210",
       EGP: "EGP 7000",
@@ -199,11 +228,16 @@ const plansData = [
     benefits: [
       "كل مميزات Standard 6 شهور",
       "دعم مكثف أثناء الفترات الحرجة",
-      "تعديل النظام عند الثبات"
-    ]
+      "تعديل النظام عند الثبات",
+      "جلسات شهرية متقدمة",
+      "متابعة يومية مكثفة",
+      "تقييم شامل كل شهرين"
+    ],
+    popular: true
   },
   {
-    name: "Premium Plan - 9 Months",
+    name: "Premium Plan",
+    duration: "9 Months",
     prices: {
       USD: "$550",
       EGP: "EGP 8000",
@@ -214,11 +248,16 @@ const plansData = [
     benefits: [
       "نفس مميزات Premium 6 شهور",
       "جلسات تعليمية خاصة",
-      "إعدادك لأسلوب حياة طويل الأمد"
-    ]
+      "إعدادك لأسلوب حياة طويل الأمد",
+      "متابعة يومية مكثفة",
+      "دعم فوري عبر المكالمات",
+      "تقييم شامل كل شهر"
+    ],
+    popular: false
   },
   {
-    name: "Steroids Users - 9 Months",
+    name: "Steroids Users",
+    duration: "9 Months",
     prices: {
       USD: "$600",
       EGP: "EGP 12000",
@@ -229,13 +268,18 @@ const plansData = [
     benefits: [
       "نفس مميزات Steroids 6 شهور",
       "إشراف طبي أكثر دقة",
-      "تحديثات شهرية شاملة"
-    ]
+      "تحديثات شهرية شاملة",
+      "متابعة تحاليل الدم الشهرية",
+      "دعم فوري عبر المكالمات",
+      "تقييم شامل كل شهر"
+    ],
+    popular: false
   },
 
   // === 12 Months Plans ===
   {
-    name: "Basic Plan - 12 Months",
+    name: "Basic Plan",
+    duration: "12 Months",
     prices: {
       USD: "$220",
       EGP: "EGP 5000",
@@ -246,11 +290,16 @@ const plansData = [
     benefits: [
       "جداول مخصصة للمراحل المختلفة",
       "متابعة سنوية دقيقة",
-      "استمرارية ودعم لحياة صحية شاملة"
-    ]
+      "استمرارية ودعم لحياة صحية شاملة",
+      "+ 3 شهور مجانية",
+      "تحديثات شهرية شاملة",
+      "دعم متقدم لتحقيق الأهداف"
+    ],
+    popular: false
   },
   {
-    name: "Standard Plan - 12 Months",
+    name: "Standard Plan",
+    duration: "12 Months",
     prices: {
       USD: "$300",
       EGP: "EGP 9000",
@@ -261,11 +310,16 @@ const plansData = [
     benefits: [
       "توسيع للمحتوى التعليمي",
       "جلسات تقييم كل ربع سنة",
-      "خطة تطوير تدريجي مستمر"
-    ]
+      "خطة تطوير تدريجي مستمر",
+      "+ 3 شهور مجانية",
+      "متابعة يومية مكثفة",
+      "دعم فوري عبر المكالمات"
+    ],
+    popular: true
   },
   {
-    name: "Premium Plan - 12 Months",
+    name: "Premium Plan",
+    duration: "12 Months",
     prices: {
       USD: "$450",
       EGP: "EGP 11000",
@@ -276,11 +330,16 @@ const plansData = [
     benefits: [
       "أولوية قصوى في الدعم والتعديلات",
       "جلسات VIP كل شهر",
-      "خطة دايت موسمية متغيرة"
-    ]
+      "خطة دايت موسمية متغيرة",
+      "+ 3 شهور مجانية",
+      "متابعة يومية مكثفة",
+      "دعم فوري عبر المكالمات"
+    ],
+    popular: false
   },
   {
-    name: "Steroids Users - 12 Months",
+    name: "Steroids Users",
+    duration: "12 Months",
     prices: {
       USD: "$1600",
       EGP: "EGP 10000",
@@ -291,8 +350,12 @@ const plansData = [
     benefits: [
       "إشراف كامل شامل سنوي",
       "تحاليل دورية وتحكم هرموني دقيق",
-      "جلسات دكتور متقدمة حسب الحاجة"
-    ]
+      "جلسات دكتور متقدمة حسب الحاجة",
+      "+ 3 شهور مجانية",
+      "متابعة يومية مكثفة",
+      "دعم فوري عبر المكالمات"
+    ],
+    popular: false
   }
 ];
 
@@ -309,8 +372,9 @@ const countryCurrencyMap = {
   EG: "EGP",
   SA: "SAR",
   AE: "AED",
-  // Add more countries as needed
 };
+
+const durationTabs = ["3 Months", "6 Months", "9 Months", "12 Months"];
 
 const GymMembership = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -319,6 +383,8 @@ const GymMembership = () => {
   const [paymentDone, setPaymentDone] = useState(false);
   const [userCurrency, setUserCurrency] = useState("default");
   const [isLoading, setIsLoading] = useState(true);
+  const [activeDuration, setActiveDuration] = useState("3 Months");
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
   useEffect(() => {
     const fetchUserLocation = async () => {
@@ -348,6 +414,16 @@ const GymMembership = () => {
       displayPrice: plan.prices[userCurrency] || plan.prices.default
     });
     setShowPaymentPopup(true);
+    setPaymentDone(false);
+  };
+
+  const filteredPlans = plansData.filter(plan => plan.duration === activeDuration);
+
+  const handleDurationChange = (duration) => {
+    setActiveDuration(duration);
+    if (swiperInstance) {
+      swiperInstance.slideTo(0);
+    }
   };
 
   if (isLoading) {
@@ -370,6 +446,15 @@ const GymMembership = () => {
         PREMIUM <span>PACKAGES</span>
       </motion.h2>
 
+      <motion.p
+        className="section-subtitle"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+      >
+        Choose the perfect plan for your fitness journey
+      </motion.p>
+
       <div className="currency-notice">
         {userCurrency !== "default" && (
           <motion.div
@@ -383,94 +468,131 @@ const GymMembership = () => {
         )}
       </div>
 
-      <div className="plans-grid">
-        {plansData.map((plan, index) => (
-          <motion.div
-            key={index}
-            className="membership-plan"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -10 }}
-          >
-            <div className="plan-header">
-              <h3 className="plan-name">{plan.name}</h3>
-              <div className="plan-price-container">
-                <div className="plan-price">
-                  {plan.prices[userCurrency] || plan.prices.default}
+      <div className="duration-tabs-container">
+        <div className="duration-tabs">
+          {durationTabs.map((duration) => (
+            <button
+              key={duration}
+              className={`duration-tab ${activeDuration === duration ? 'active' : ''}`}
+              onClick={() => handleDurationChange(duration)}
+            >
+              {duration}
+              {duration === "12 Months" && (
+                <span className="free-months-badge">+3 FREE</span>
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <Swiper
+        spaceBetween={30}
+        slidesPerView={1}
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1200: { slidesPerView: 4 }
+        }}
+        pagination={{ clickable: true }}
+        modules={[Pagination, Autoplay]}
+        className="plans-swiper"
+        onSwiper={setSwiperInstance}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
+      >
+        {filteredPlans.map((plan, index) => (
+          <SwiperSlide key={`${plan.name}-${plan.duration}`}>
+            <motion.div
+              className={`membership-plan ${plan.popular ? 'popular-plan' : ''}`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
+            >
+              {plan.popular && (
+                <div className="popular-badge">
+                  <Star className="star-icon" /> Most Popular
                 </div>
-                <div className="plan-duration">
-                  <span className="duration-text">TRANSFORMATION PROGRAM</span>
+              )}
+              <div className="plan-header">
+                <h3 className="plan-name">{plan.name}</h3>
+                <div className="plan-price-container">
+                  <div className="plan-price">
+                    {plan.prices[userCurrency] || plan.prices.default}
+                  </div>
+                  <div className="plan-duration">
+                    <span className="duration-badge">{plan.duration}</span>
+                  </div>
                 </div>
+                <div className="price-underline"></div>
               </div>
-              <div className="price-underline"></div>
-            </div>
-            <ul className="plan-benefits">
-              {plan.benefits.slice(0, 5).map((benefit, i) => (
-                <motion.li 
-                  key={i} 
-                  className="benefit-item"
-                  whileHover={{ x: 5 }}
+              <ul className="plan-benefits">
+                {plan.benefits.slice(0, 5).map((benefit, i) => (
+                  <motion.li 
+                    key={i} 
+                    className="benefit-item"
+                    whileHover={{ x: 5 }}
+                  >
+                    <CheckCircle className="benefit-icon" />
+                    <span>{benefit}</span>
+                  </motion.li>
+                ))}
+              </ul>
+              {plan.benefits.length > 5 && (
+                <motion.button 
+                  className="toggle-benefits-btn" 
+                  onClick={() => toggleExpand(index)}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <CheckCircle className="benefit-icon" />
-                  <span>{benefit}</span>
-                </motion.li>
-              ))}
-            </ul>
-            {plan.benefits.length > 5 && (
-              <motion.button 
-                className="toggle-benefits-btn" 
-                onClick={() => toggleExpand(index)}
+                  {expandedIndex === index ? (
+                    <>
+                      <span>Show Less</span>
+                      <ExpandLess className="toggle-icon" />
+                    </>
+                  ) : (
+                    <>
+                      <span>Show More</span>
+                      <ExpandMore className="toggle-icon" />
+                    </>
+                  )}
+                </motion.button>
+              )}
+              <AnimatePresence>
+                {expandedIndex === index && (
+                  <motion.ul
+                    className="additional-benefits"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {plan.benefits.slice(5).map((benefit, i) => (
+                      <motion.li
+                        key={i + 5}
+                        className="benefit-item"
+                        initial={{ x: -20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                      >
+                        <CheckCircle className="benefit-icon" />
+                        <span>{benefit}</span>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+              <motion.button
+                className="subscribe-btn"
+                onClick={() => handleSubscribe(plan)}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {expandedIndex === index ? (
-                  <>
-                    <span>Show Less</span>
-                    <ExpandLess className="toggle-icon" />
-                  </>
-                ) : (
-                  <>
-                    <span>Show More</span>
-                    <ExpandMore className="toggle-icon" />
-                  </>
-                )}
+                SUBSCRIBE NOW
               </motion.button>
-            )}
-            <AnimatePresence>
-              {expandedIndex === index && (
-                <motion.ul
-                  className="additional-benefits"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {plan.benefits.slice(5).map((benefit, i) => (
-                    <motion.li
-                      key={i + 5}
-                      className="benefit-item"
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: i * 0.05 }}
-                    >
-                      <CheckCircle className="benefit-icon" />
-                      <span>{benefit}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
-            <motion.button
-              className="subscribe-btn"
-              onClick={() => handleSubscribe(plan)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              SUBSCRIBE NOW
-            </motion.button>
-          </motion.div>
+            </motion.div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
 
       <AnimatePresence>
         {showPaymentPopup && (
@@ -498,10 +620,17 @@ const GymMembership = () => {
                 </motion.button>
               </div>
               <div className="selected-plan-info">
-                <h4>{selectedPlan.name}</h4>
-                <p>{selectedPlan.displayPrice}</p>
+                <h4>{selectedPlan.name} - {selectedPlan.duration}</h4>
+                <div className="selected-plan-price">
+                  {selectedPlan.displayPrice}
+                </div>
                 <div className="selected-plan-duration">
-                  <span className="duration-highlight">3 MONTHS PROGRAM</span>
+                  <span className="duration-highlight">
+                    {selectedPlan.duration} PROGRAM
+                    {selectedPlan.duration === "12 Months" && (
+                      <span className="free-months-highlight"> + 3 MONTHS FREE</span>
+                    )}
+                  </span>
                 </div>
               </div>
               <ul className="payment-methods-list">
@@ -536,7 +665,7 @@ const GymMembership = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  SEND PAYMENT PROOF VIA WHATSAPP
+                  <span>SEND PAYMENT PROOF VIA WHATSAPP</span>
                 </motion.a>
               )}
             </motion.div>

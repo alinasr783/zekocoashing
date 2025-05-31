@@ -114,7 +114,7 @@ const HeroSection = () => {
             ref={arabicTextRef}
             className="hero-arabic"
           >
-            التدريب جنون والجنون فنون مع البروفيسور المجنون
+            التدريب فنون مع البروفيسور المجنون
           </span>
           <span ref={englishTextRef} className="hero-english">YAHIA ZEKO</span>
         </h1>

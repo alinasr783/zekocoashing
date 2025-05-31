@@ -3,7 +3,7 @@
 /* Main Container */
 .gym-membership-container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
   padding: 80px 20px;
   background-color: #0a0a0a;
   position: relative;
@@ -30,7 +30,7 @@
   text-align: center;
   font-size: 3.5rem;
   text-transform: uppercase;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   margin-top: 50px;
   color: #fff;
   position: relative;
@@ -84,17 +84,26 @@
   border: 1px solid #ff0000;
 }
 
-/* Duration Tabs */
-.duration-tabs {
+/* Duration Tabs Container */
+.duration-tabs-container {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
-  gap: 10px;
-  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.duration-tabs {
+  display: flex;
+  background: rgba(30, 30, 30, 0.7);
+  border-radius: 50px;
+  padding: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
 }
 
 .duration-tab {
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   color: #aaa;
   border: none;
   padding: 12px 25px;
@@ -105,10 +114,12 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .duration-tab:hover {
-  background: rgba(255, 0, 0, 0.2);
   color: #fff;
 }
 
@@ -118,16 +129,42 @@
   box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
 }
 
-/* Plans Grid Layout */
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1300px;
+.free-months-badge {
+  background: #25D366;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: bold;
+}
+
+/* Swiper Container */
+.plans-swiper {
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 20px;
   position: relative;
   z-index: 1;
-  padding: 0 20px;
+}
+
+.swiper-pagination {
+  position: relative;
+  margin-top: 30px;
+}
+
+.swiper-pagination-bullet {
+  background: #aaa;
+  opacity: 1;
+  width: 12px;
+  height: 12px;
+  margin: 0 8px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ff0000;
+  transform: scale(1.2);
 }
 
 /* Plan Card Styles */
@@ -144,6 +181,7 @@
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(5px);
+  margin: 10px;
 }
 
 .membership-plan::before {
@@ -163,8 +201,9 @@
 }
 
 .popular-plan {
-  border: 1px solid #ff0000;
+  border: 2px solid #ff0000;
   box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+  background: rgba(30, 0, 0, 0.3);
 }
 
 .popular-plan::after {
@@ -192,6 +231,13 @@
   transform: rotate(45deg);
   box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
   z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  font-size: 1rem;
+  margin-right: 5px;
 }
 
 .plan-header {
@@ -462,6 +508,12 @@
   border: 1px solid #ff0000;
 }
 
+.free-months-highlight {
+  color: #25D366;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
 .payment-methods-container {
   margin-bottom: 30px;
 }
@@ -631,8 +683,8 @@
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
-  .plans-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  .plans-swiper {
+    padding: 10px;
   }
 }
 
@@ -641,12 +693,26 @@
     font-size: 2.5rem;
   }
 
+  .section-subtitle {
+    font-size: 1rem;
+  }
+
   .plan-name {
     font-size: 1.4rem;
   }
 
   .plan-price {
     font-size: 2rem;
+  }
+
+  .duration-tab {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .free-months-badge {
+    font-size: 0.6rem;
+    padding: 1px 5px;
   }
 }
 
@@ -657,7 +723,12 @@
 
   .section-title {
     font-size: 2rem;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 30px;
   }
 
   .membership-plan {
@@ -675,5 +746,23 @@
   .duration-badge {
     font-size: 0.8rem;
     padding: 4px 12px;
+  }
+
+  .duration-tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+  }
+
+  .duration-tab {
+    margin: 5px;
+    padding: 8px 15px;
+  }
+
+  .popular-badge {
+    right: -35px;
+    padding: 5px 35px;
+    font-size: 0.7rem;
   }
 }
