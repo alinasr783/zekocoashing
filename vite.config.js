@@ -28,7 +28,7 @@ export default defineConfig({
   ],
   server: {
     allowedHosts: [
-      '12df5863-0924-4fba-8021-52708603255a-00-2h4vw5942bsew.janeway.replit.dev'
+      '21560bae-496d-4f21-8ed4-352f1cd725df-00-lyfej7zw51tf.worf.replit.dev'
     ]
   }
 });
