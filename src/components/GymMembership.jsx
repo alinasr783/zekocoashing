@@ -40,14 +40,24 @@ const GymMembership = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // محاولة جلب الموقع والعملة (بشكل منفصل لتجنب توقف الموقع بالكامل عند الفشل)
       try {
-        // جلب بيانات الموقع أولاً
         const locationResponse = await fetch("https://ipapi.co/json/");
-        const locationData = await locationResponse.json();
-        const currency = countryCurrencyMap[locationData.country] || "default";
-        setUserCurrency(currency);
+        if (locationResponse.ok) {
+          const locationData = await locationResponse.json();
+          const currency = countryCurrencyMap[locationData.country] || "default";
+          setUserCurrency(currency);
+        } else {
+          console.warn("IP API rate limited or blocked, using default currency");
+          setUserCurrency("default");
+        }
+      } catch (error) {
+        console.warn("Could not fetch location data (CORS/Network), defaulting to USD:", error);
+        setUserCurrency("default");
+      }
 
-        // ثم جلب بيانات الباقات من Supabase
+      // جلب بيانات الباقات من Supabase
+      try {
         const { data, error } = await supabase
           .from('UDB')
           .select('packages')
@@ -62,8 +72,7 @@ const GymMembership = () => {
           console.error('No packages data found');
         }
       } catch (error) {
-        console.error("Failed to fetch data:", error);
-        setUserCurrency("default");
+        console.error("Failed to fetch packages data:", error);
       } finally {
         setIsLoading(false);
       }
