@@ -114,16 +114,16 @@ const HeroSection = () => {
             ref={arabicTextRef}
             className="hero-arabic"
           >
-            التدريب فنون مع البروفيسور المجنون
+            البروفيسور 
           </span>
-          <span ref={englishTextRef} className="hero-english">YAHIA ZEKO</span>
+          <span ref={englishTextRef} className="hero-english">The professor coach</span>
         </h1>
 
         <button 
           ref={buttonRef}
           className="hero-button"
         >
-          <a href="#packages">Packages</a>
+          <a href="#packages">الباقات</a>
         </button>
       </div>
 

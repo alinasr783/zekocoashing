@@ -21,7 +21,6 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import CloseIcon from "@mui/icons-material/Close";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
-import logo from "../assets/logo.jpg";
 import "./Header.css";
 
 const Header = () => {
@@ -89,7 +88,7 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <img src={logo} alt="Logo" />
+            <img src={"https://i.ibb.co/pBkgmWTv/d253650f-0733-45c4-85cd-d8ed19325d64.jpg"} alt="The professor coach" />
           </motion.div>
 
           {!isMobile && (
@@ -160,7 +159,7 @@ const Header = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <img src={logo} alt="Logo" />
+                <img src={"https://i.ibb.co/pBkgmWTv/d253650f-0733-45c4-85cd-d8ed19325d64.jpg"} alt="The professor coach" />
               </motion.div>
               <IconButton onClick={handleDrawerToggle}>
                 <CloseIcon sx={{ color: "#ffffff" }} />

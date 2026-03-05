@@ -2,8 +2,8 @@ import React from "react";
 import "./whatsapp.css"; // استيراد ملف الـ CSS
 
 const WhatsApp = () => {
-  const phoneNumber = "20106720 3240"; // رقم الواتساب المطلوب
-  const message = encodeURIComponent("مرحبًا، أنا مهتم بخدماتكم!"); // الرسالة الافتراضية
+  const phoneNumber = "201067203240"; // رقم الواتساب المطلوب
+  const message = encodeURIComponent("مرحبًا، أريد الاشتراك مع The professor coach"); // الرسالة الافتراضية
 
   return (
     <a
@@ -12,7 +12,7 @@ const WhatsApp = () => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      💬 تواصل معنا
+      💬 تواصل عبر واتساب
     </a>
   );
 };

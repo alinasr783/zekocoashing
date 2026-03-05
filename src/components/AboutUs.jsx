@@ -34,7 +34,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className={`about-container ${isVisible ? "fade-in" : "hidden"}`} id="AboutUs">
+    <div ref={sectionRef} className={`about-container ${isVisible ? "fade-in" : "hidden"}`} id="about">
       <h2 className="about-title">About Us</h2>
       <p className="about-text">{text}</p>
     </div>
