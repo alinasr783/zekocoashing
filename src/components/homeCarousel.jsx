@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -16,8 +15,6 @@ const plans = [
 ];
 
 export default function HomeCarousel() {
-  const navigate = useNavigate();
-
   const handleSubscribe = (plan) => {
     console.log(`Subscribed to: ${plan.name}`);
   };
