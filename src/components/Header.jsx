@@ -35,10 +35,15 @@ const Header = () => {
 
   const menuItems = useMemo(
     () => [
-      { text: "Home", icon: <HomeIcon />, link: "#home" },
-      { text: "Packages", icon: <GroupWorkIcon />, link: "#packages" },
-      { text: "About", icon: <InfoIcon />, link: "#about" },
-      { text: "Contact", icon: <ContactMailIcon />, link: "#contact" },
+      { text: "الرئيسية", icon: <HomeIcon />, link: "#home" },
+      { text: "تعريف بالمدرب", icon: <InfoIcon />, link: "#coach" },
+      { text: "الأسعار (الباقات)", icon: <GroupWorkIcon />, link: "#packages" },
+      { text: "تفاصيل الباقة الأولى", icon: <GroupWorkIcon />, link: "#package-1" },
+      { text: "تفاصيل الباقة الثانية", icon: <GroupWorkIcon />, link: "#package-2" },
+      { text: "تفاصيل الباقة الثالثة", icon: <GroupWorkIcon />, link: "#package-3" },
+      { text: "خطوات العمل", icon: <InfoIcon />, link: "#steps" },
+      { text: "نظام العمل", icon: <InfoIcon />, link: "#system" },
+      { text: "طرق التواصل", icon: <ContactMailIcon />, link: "#contact" },
     ],
     []
   );

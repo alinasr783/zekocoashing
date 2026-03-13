@@ -52,63 +52,11 @@ const sections = [
 ];
 
 const Beta = () => {
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <div dir="rtl" style={{ width: "100%", background: "#000", color: "#fff" }}>
-      <header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1100,
-          background: "rgba(0, 0, 0, 0.88)",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
-          backdropFilter: "blur(10px)"
-        }}
-      >
-        <nav
-          style={{
-            display: "flex",
-            gap: 10,
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "10px 12px",
-            flexWrap: "wrap"
-          }}
-        >
-          {sections.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => scrollToSection(item.id)}
-              style={{
-                cursor: "pointer",
-                padding: "8px 12px",
-                borderRadius: 10,
-                border: "1px solid rgba(255, 255, 255, 0.18)",
-                background: "rgba(255, 255, 255, 0.06)",
-                color: "#fff",
-                fontFamily: '"Tajawal", sans-serif',
-                fontWeight: 700,
-                fontSize: 14,
-                lineHeight: 1.1
-              }}
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
-      </header>
-
-      <main style={{ width: "100%", paddingTop: 70 }}>
+      <main style={{ width: "100%", paddingTop: 90 }}>
         {sections.map((section) => (
-          <section key={section.id} id={section.id} style={{ scrollMarginTop: 80 }}>
+          <section key={section.id} id={section.id} style={{ scrollMarginTop: 90 }}>
             {section.images.map((src, idx) => (
               <img
                 key={`${section.id}-${idx}`}
