@@ -1,4 +1,5 @@
 import React from "react";
+import ReasonsToJoin from "./ReasonsToJoin";
 
 const sections = [
   {
@@ -55,7 +56,31 @@ const Beta = () => {
   return (
     <div dir="rtl" style={{ width: "100%", background: "#000", color: "#fff" }}>
       <main style={{ width: "100%", paddingTop: 90 }}>
-        {sections.map((section) => (
+        {/* First section - الرئيسية */}
+        <section key={sections[0].id} id={sections[0].id} style={{ scrollMarginTop: 90 }}>
+          {sections[0].images.map((src, idx) => (
+            <img
+              key={`${sections[0].id}-${idx}`}
+              src={src}
+              alt={`${sections[0].id}-${idx + 1}`}
+              loading="lazy"
+              style={{
+                display: "block",
+                width: "100%",
+                height: "auto",
+                margin: 0,
+                padding: 0,
+                objectFit: "cover"
+              }}
+            />
+          ))}
+        </section>
+
+        {/* Before and After section */}
+        <ReasonsToJoin />
+
+        {/* Remaining sections */}
+        {sections.slice(1).map((section) => (
           <section key={section.id} id={section.id} style={{ scrollMarginTop: 90 }}>
             {section.images.map((src, idx) => (
               <img
