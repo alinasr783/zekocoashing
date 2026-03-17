@@ -10,9 +10,9 @@
 
 .transformation-section {
   background-color: var(--ba-black);
-  padding: 6rem 1rem;
+  padding: 8rem 1rem;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   font-family: 'Cairo', sans-serif;
 }
 
@@ -60,6 +60,7 @@
   transition: all 0.3s ease;
   opacity: 0.4;
   transform: scale(0.9);
+  height: auto;
 }
 
 .swiper-slide-active {
@@ -224,8 +225,8 @@
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
-  aspect-ratio: 16/9;
+  object-fit: contain;
+  aspect-ratio: auto;
 }
 
 .ba-badge {
